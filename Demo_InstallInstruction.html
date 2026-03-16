@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anleitung: Loxone Config installieren (Windows)</title>
+    <style>
+        :root {
+            --loxone-green: #69B62D;
+            --loxone-dark: #1a1a1a;
+            --bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --text: #333333;
+            --text-light: #666666;
+            --border: #e0e0e0;
+            --code-bg: #f4f4f4;
+            --shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            color: var(--text);
+            background: var(--bg);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--loxone-dark) 0%, #2d2d2d 100%);
+            color: white;
+            padding: 40px 0;
+            border-bottom: 4px solid var(--loxone-green);
+        }
+        
+        .header-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+        
+        .header h1 {
+            font-size: 2em;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .header .subtitle {
+            color: var(--loxone-green);
+            font-size: 1.1em;
+            font-weight: 400;
+        }
+        
+        .header .badge {
+            display: inline-block;
+            background: var(--loxone-green);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+        
+        .content {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 40px 50px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--loxone-dark);
+            margin-top: 2em;
+            margin-bottom: 0.6em;
+            line-height: 1.3;
+        }
+        
+        h1 { font-size: 1.8em; border-bottom: 3px solid var(--loxone-green); padding-bottom: 10px; }
+        h2 { font-size: 1.5em; border-bottom: 2px solid var(--border); padding-bottom: 8px; }
+        h3 { font-size: 1.25em; color: var(--loxone-green); }
+        h4 { font-size: 1.1em; }
+        
+        h1:first-child, h2:first-child { margin-top: 0; }
+        
+        p {
+            margin-bottom: 1em;
+        }
+        
+        li {
+            margin-left: 30px;
+            margin-bottom: 0.5em;
+            list-style-type: disc;
+        }
+        
+        strong {
+            color: var(--loxone-dark);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5em 0;
+            font-size: 0.95em;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+        }
+        
+        th {
+            background: var(--loxone-dark);
+            color: white;
+            padding: 12px 16px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 10px 16px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        tr:nth-child(even) td {
+            background: #f9f9f9;
+        }
+        
+        tr:hover td {
+            background: #f0f7e8;
+        }
+        
+        pre {
+            background: var(--code-bg);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--loxone-green);
+            padding: 16px 20px;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 1em 0;
+            font-size: 0.9em;
+        }
+        
+        code {
+            font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+            background: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+        
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        
+        .img-container {
+            text-align: center;
+            margin: 1.5em 0;
+        }
+        
+        .img-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+            border: 1px solid var(--border);
+        }
+        
+        mark {
+            background: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: var(--text-light);
+            font-size: 0.85em;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                padding: 20px;
+            }
+            .container {
+                padding: 15px;
+            }
+            .header-inner {
+                padding: 0 15px;
+            }
+        }
+        
+        @media print {
+            .header {
+                background: white;
+                color: black;
+                border-bottom: 2px solid black;
+            }
+            .header .subtitle { color: #333; }
+            .content { box-shadow: none; border: none; }
+            .img-container img { box-shadow: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-inner">
+            <h1>Anleitung: Loxone Config installieren (Windows)</h1>
+            <div class="subtitle">Loxone Smart Home Konfiguration</div>
+            <span class="badge">Dokumentation V1</span>
+        </div>
+    </div>
+    <div class="container">
+        <div class="content">
+<p>Anleitung: Loxone Config installieren (Windows)</p>
+<p>Schritt-für-Schritt-Guide inkl. FAQ am Ende</p>
+<h1>1. Überblick</h1>
+<p>Mit <strong>Loxone Config</strong> erstellst und verwaltest du die Programmierung einer Loxone-Anlage (z. B. Miniserver). Diese Anleitung führt dich durch Download, Installation und erste Schritte nach dem Start.</p>
+<h1>2. Voraussetzungen</h1>
+<li>Windows-PC mit Administratorrechten (für Installation/Updates).</li>
+<li>Stabile Internetverbindung (für Download und ggf. Updates).</li>
+<li>Zugriffsdaten zur Anlage (Miniserver-IP/Hostname, Benutzer/Passwort), falls du direkt verbinden willst.</li>
+<li>Optional: USB-/Netzwerkzugang zur Hardware (je nach Inbetriebnahme-Szenario).</li>
+<li>Grüner und Schwarzen Loxone USB-C stick mit den .ini Files</li>
+<h1>3. Download von Loxone Config</h1>
+<li>Öffne die offizielle Loxone-Website und navigiere zum Bereich <strong>Downloads</strong>.</li>
+<li>Lade die aktuelle Version von <strong>Loxone Config (Windows)</strong> herunter.</li>
+<li>Speichere die Installationsdatei (Setup) in einem leicht auffindbaren Ordner, z. B. <em>Downloads</em>.</li>
+<h1>4. Installation (Setup ausführen)</h1>
+<li>Starte das Setup per Doppelklick. Falls Windows nachfragt, bestätige mit <strong>Ja</strong> (Administratorrechte).</li>
+<li>Wähle die gewünschte Sprache und akzeptiere die Lizenzbedingungen.</li>
+<li>Wähle den Installationspfad (Standard ist meist passend) und klicke auf <strong>Installieren</strong>.</li>
+<li>Warte, bis die Installation abgeschlossen ist, und klicke auf <strong>Fertigstellen</strong>.</li>
+<li>Nimm dein Telefon in die Hand und rufe den nächste Pizza Service</li>
+<li>Kopiere die Files zuerst vom Schwarzen USB Stick in das Install verzeichnis.</li>
+<li>Kopiere dann die ini Dateien vom Grünen USB Stick und Kopiere Sie auf den Desktop</li>
+<h2>4.1 Häufige Systemabfragen (Firewall/SmartScreen)</h2>
+<li>Wenn <strong>Windows Defender SmartScreen</strong> warnt: prüfe, ob du das Setup von der offiziellen Loxone-Seite geladen hast, und bestätige dann ggf. die Ausführung.</li>
+<li>Wenn die <strong>Windows-Firewall</strong> nach Netzwerkzugriff fragt: erlaube den Zugriff zumindest für <strong>private Netzwerke</strong>, damit die Verbindung zum Miniserver im lokalen Netz funktioniert.</li>
+<h1>5. Erster Start &amp; Grundkonfiguration</h1>
+<li>Starte <strong>Loxone Config</strong> über das Startmenü oder das Desktop-Icon.</li>
+<li>Falls ein Update-Hinweis erscheint, führe das Update durch, um Versionskonflikte zu vermeiden.</li>
+<li>Öffne ein bestehendes Projekt (falls vorhanden) oder erstelle ein neues Projekt.</li>
+<li>Verbinde dich mit dem Miniserver: wähle die Verbindung/Miniserver-Suche und gib IP/Hostname sowie Benutzer/Passwort ein.</li>
+<li>Speichere das Projekt lokal und lege bei Bedarf ein Backup an (z. B. Projektdatei auf Netzlaufwerk).</li>
+<h1>6. Troubleshooting (kurz)</h1>
+<li><strong>Setup startet nicht:</strong> Datei erneut herunterladen, Rechtsklick → „Als Administrator ausführen“, SmartScreen/Antivirus-Meldungen prüfen.</li>
+<li><strong>Keine Verbindung zum Miniserver:</strong> PC im gleichen Netzwerk? IP/Hostname korrekt? Firewall-Regel prüfen. Test: Miniserver im Browser anpingen/öffnen.</li>
+<li><strong>Versionskonflikt Projekt/Miniserver:</strong> Loxone Config auf passende/aktuelle Version updaten; bei Bedarf Projekt mit kompatibler Version öffnen.</li>
+<li><strong>Login schlägt fehl:</strong> Benutzerrechte prüfen, Tippfehler ausschließen, ggf. Passwort zurücksetzen bzw. Admin kontaktieren.</li>
+<h1>7. FAQ</h1>
+<h2>Was ist der Unterschied zwischen Loxone App und Loxone Config?</h2>
+<p>Die <strong>Loxone App</strong> ist primär zum Bedienen (Visualisierung) gedacht. <strong>Loxone Config</strong> ist das Engineering-Tool zum Erstellen, Programmieren und Inbetriebnehmen der Anlage.</p>
+<h2>Brauche ich Administratorrechte für die Installation?</h2>
+<p>In der Regel ja – insbesondere für die Installation selbst und spätere Updates. Wenn du keine Rechte hast, bitte deine IT um Installation oder um einen Softwareverteilungsweg.</p>
+<h2>Warum findet Loxone Config meinen Miniserver nicht?</h2>
+<p>Typische Ursachen sind: PC nicht im gleichen Netz/VLAN, falsches WLAN, blockierende Firewall-Regeln oder ein falscher IP-Adressbereich. Prüfe die Netzwerkverbindung und teste die Miniserver-IP im Browser.</p>
+<h2>Welche Version von Loxone Config soll ich verwenden?</h2>
+<p>Am sichersten ist es, eine Version zu verwenden, die zum Softwarestand deiner Anlage passt. Wenn du unsicher bist: erst aktualisieren/abgleichen (Config/Miniserver), dann das Projekt bearbeiten.</p>
+<h2>Wo werden Projekte gespeichert und wie sichere ich sie?</h2>
+<p>Projekte speicherst du als Datei lokal auf deinem PC. Lege zusätzlich regelmäßige Backups an (z. B. auf Netzlaufwerk/Share) und dokumentiere Versionen (Datum, Anlage, Änderungen), damit du jederzeit zurück kannst.</p>
+
+        </div>
+    </div>
+    <div class="footer">
+        Generiert aus Loxone_Conifg_Install_V1.docx &bull; Haus Umdau Projekt
+    </div>
+</body>
+</html>
